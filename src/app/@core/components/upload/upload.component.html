@@ -1,0 +1,13 @@
+<nz-upload
+  nzAccept="image/*"
+  nzType="drag"
+  [nzSize]="10000"
+  [nzBeforeUpload]="beforeUpload"
+  [nzCustomRequest]="handleUpload"
+>
+  <p class="ant-upload-drag-icon">
+    <span style="font-size: 44px" nz-icon nzType="inbox"></span>
+  </p>
+  <p class="ant-upload-text">Click hoặc kéo thả file để upload</p>
+  <p class="ant-upload-hint">Hỗ trợ tải lên 1 file ảnh, tối đa 10MB.</p>
+</nz-upload>

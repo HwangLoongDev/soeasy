@@ -1,0 +1,31 @@
+nz-layout {
+  height: 100vh;
+  background-color: #f9fbfd;
+}
+
+nz-header {
+  padding: 0;
+  height: 70px;
+  border-bottom: 1px solid #edf2f9;
+}
+
+nz-content {
+  margin: 0 16px;
+}
+
+.content-container {
+  border: 1px solid #edf2f9;
+  padding: 24px;
+  max-height: calc(100vh - 70px - 58px - 40px);
+  overflow: auto;
+  background: #fff;
+}
+
+
+nz-footer {
+  text-align: center;
+}
+
+nz-sider {
+  border-right: 1px solid #edf2f9;
+}

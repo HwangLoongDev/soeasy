@@ -1,0 +1,66 @@
+<h3 nz-typography>Thêm Tin tức - Sự kiện</h3>
+<form nz-form [formGroup]="formNewsEvents" (ngSubmit)="submitForm()">
+  <nz-form-item nz-col>
+    <nz-form-label [nzSpan]="24" [nzRequired]="true">Tiêu đề</nz-form-label>
+    <nz-form-control [nzSpan]="16" nzHasFeedback>
+      <input
+        autocomplete="off"
+        nz-input
+        nzSize="large"
+        formControlName="title"
+        placeholder="Nhập dữ liệu"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item nz-col>
+    <nz-form-label [nzSpan]="24" [nzRequired]="true"
+      >Ảnh thumbnail</nz-form-label
+    >
+    <nz-form-control [nzSpan]="16" nzHasFeedback>
+      <app-upload (emitUrl)="receivedImageUrl($event)"></app-upload>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item nz-col>
+    <nz-form-label [nzSpan]="24" [nzRequired]="true"
+      >Ngày hiệu lực</nz-form-label
+    >
+    <nz-form-control [nzSpan]="16" nzHasFeedback>
+      <nz-range-picker
+        nzSize="large"
+        [nzFormat]="'dd/MM/YYYY'"
+        formControlName="effectiveDate"
+      ></nz-range-picker>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="24" [nzRequired]="true">Mô tả</nz-form-label>
+    <nz-form-control [nzSpan]="24" nzHasFeedback>
+      <quill-editor
+        formControlName="description"
+        placeholder="Tóm tắt nội dung"
+      ></quill-editor>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="24" [nzRequired]="true">Nội dung</nz-form-label>
+    <nz-form-control
+      [nzSpan]="24"
+      nzHasFeedback
+      nzErrorTip="Please write something here!"
+    >
+      <quill-editor
+        formControlName="editorContent"
+        placeholder="Nội dung chi tiết"
+      ></quill-editor>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzSpan]="16">
+      <button nz-button nzType="primary">Submit</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

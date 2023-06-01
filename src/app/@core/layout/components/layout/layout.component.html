@@ -1,0 +1,25 @@
+<nz-layout>
+  <nz-sider
+    nzCollapsible
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+    nzTheme="light"
+    nzBreakpoint="lg"
+    [nzCollapsedWidth]="74"
+    [nzWidth]="260"
+  >
+    <app-sidebar></app-sidebar>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <app-header></app-header>
+    </nz-header>
+    <nz-content>
+      <app-breadcrumb></app-breadcrumb>
+      <div class="content-container">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+    <!-- <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer> -->
+  </nz-layout>
+</nz-layout>

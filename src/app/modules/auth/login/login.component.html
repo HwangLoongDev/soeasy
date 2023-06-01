@@ -1,0 +1,59 @@
+<div class="login-container">
+  <div class="login-header">
+    <h1 nz-typography>CMS</h1>
+  </div>
+
+  <div class="login-content">
+    <div class="login-card">
+      <div>
+        <h3 nz-typography>Đăng nhập</h3>
+        <span class="sub-title"
+          >Nhập thông tin tài khoản/mật khẩu để truy cập</span
+        >
+      </div>
+
+      <form nz-form [formGroup]="formLogin" (ngSubmit)="submitForm()">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="24" nzRequired nzFor="note"
+            >Tài khoản</nz-form-label
+          >
+          <nz-form-control [nzSpan]="24" nzErrorTip="Vui lòng nhập tài khoản!">
+            <input
+              id="note"
+              type="text"
+              nz-input
+              nzSize="large"
+              formControlName="username"
+            />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="24" nzRequired nzFor="note"
+            >Mật khẩu</nz-form-label
+          >
+          <nz-form-control [nzSpan]="24" nzErrorTip="Vui lòng nhập mật khẩu!">
+            <input
+              id="note"
+              type="password"
+              nz-input
+              nzSize="large"
+              formControlName="password"
+            />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control [nzSpan]="24">
+            <button nz-button nzSize="large" nzType="primary" [nzLoading]="isLogging">Đăng nhập</button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+    <div class="login-img">
+      <img src="../../../../assets/login-2.png" alt="" />
+    </div>
+  </div>
+
+  <div class="login-footer">© 2019 ThemeNate</div>
+</div>

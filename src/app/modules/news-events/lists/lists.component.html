@@ -1,0 +1,29 @@
+<h3 nz-typography>Danh sách Tin tức - Sự kiện</h3>
+<nz-table #basicTable [nzData]="dataSet" [nzNoResult]="empty">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Address</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{ data.name }}</td>
+      <td>{{ data.age }}</td>
+      <td>{{ data.address }}</td>
+      <td>
+        <a>Action 一 {{ data.name }}</a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a>Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+<ng-template #empty>
+  <app-empty-data
+    [btnLabel]="'Thêm mới'"
+    [callback]="theBoundCallback"
+  ></app-empty-data>
+</ng-template>

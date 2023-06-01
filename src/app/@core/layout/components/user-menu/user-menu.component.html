@@ -1,0 +1,11 @@
+<a nz-dropdown [nzDropdownMenu]="menu"> {{ username || "Anonymous" }} </a>
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu>
+    <li nz-menu-item nzDisabled>Thông tin cá nhân (coming soon)</li>
+    <li nz-menu-item nzDisabled>Đổi mật khẩu (coming soon)</li>
+    <li nz-menu-divider></li>
+    <li nz-menu-item (click)="logout()">
+      <span nz-icon nzType="logout"></span> Đăng xuất
+    </li>
+  </ul>
+</nz-dropdown-menu>

@@ -1,0 +1,28 @@
+.trigger {
+  font-size: 24px;
+  line-height: 64px;
+  // padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.btn-trigger {
+  &:hover {
+    background: #97c7f53f;
+    color: #1890ff;
+  }
+}
+
+nz-header {
+  background: #fff;
+  padding: 0 24px;
+  height: 70px;
+  border-bottom: 1px solid #edf2f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

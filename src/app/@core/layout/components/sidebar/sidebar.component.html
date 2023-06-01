@@ -1,0 +1,29 @@
+<nz-sider
+  nzCollapsible
+  [(nzCollapsed)]="isCollapsed"
+  [nzTrigger]="null"
+  nzTheme="light"
+  nzBreakpoint="lg"
+  [nzCollapsedWidth]="74"
+  [nzWidth]="260"
+>
+  <div class="logo"></div>
+  <ul nz-menu nzMode="inline">
+    <li nz-submenu nzTitle="Quản lý sản phẩm" nzIcon="user">
+      <ul>
+        <li nz-menu-item>Danh mục</li>
+        <li nz-menu-item>Nhóm sản phẩm</li>
+        <li nz-menu-item>Danh sách sản phẩm</li>
+        <li nz-menu-item>Sản phẩm bán chạy</li>
+      </ul>
+    </li>
+    <li nz-menu-item routerLink="/news-events">
+      <span nz-icon nzType="file"></span>
+      <span>Tin tức - Sự kiện</span>
+    </li>
+    <li nz-menu-item>
+      <span nz-icon nzType="file"></span>
+      <span>Phản hồi</span>
+    </li>
+  </ul>
+</nz-sider>

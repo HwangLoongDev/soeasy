@@ -1,0 +1,10 @@
+<nz-header>
+  <button nz-button nzType="text" class="btn-trigger" (click)="toggleSidebar()">
+    <span
+      class="trigger"
+      nz-icon
+      [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+    ></span>
+  </button>
+  <app-user-menu [username]="username"></app-user-menu>
+</nz-header>
