@@ -1,0 +1,49 @@
+<form [formGroup]="formCategory" (submit)="handleSubmit()">
+  <nz-form-item nz-col>
+    <nz-form-label [nzSpan]="24" [nzRequired]="true">
+      Tên danh mục
+    </nz-form-label>
+    <nz-form-control
+      [nzSpan]="24"
+      nzHasFeedback
+      nzErrorTip="Yêu cầu nhập 'Tên danh mục'"
+    >
+      <input
+        [disabled]="loading"
+        autocomplete="off"
+        nz-input
+        nzSize="large"
+        formControlName="name"
+        placeholder="Nhập dữ liệu"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <div class="action">
+    <button
+      *ngIf="isUpdate"
+      nz-button
+      nzSize="large"
+      nzType="default"
+      (click)="handleCancel()"
+      [nzLoading]="loading"
+    >
+      <span nz-icon nzType="close-circle"></span> Hủy
+    </button>
+
+    <button
+      nz-button
+      nzSize="large"
+      nzType="primary"
+      type="submit"
+      [nzLoading]="loading"
+    >
+      <ng-container *ngIf="isUpdate; else create">
+        <span nz-icon nzType="file-sync"></span> Cập nhật
+      </ng-container>
+      <ng-template #create>
+        <span nz-icon nzType="plus-circle"></span> Thêm mới
+      </ng-template>
+    </button>
+  </div>
+</form>

@@ -17,6 +17,12 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzTransferModule } from 'ng-zorro-antd/transfer';
+import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 
 const antModules = [
   NzButtonModule,
@@ -35,6 +41,12 @@ const antModules = [
   NzFormModule,
   NzDatePickerModule,
   NzUploadModule,
+  NzSelectModule,
+  NzInputNumberModule,
+  NzTransferModule,
+  NzTagModule,
+  NzPopconfirmModule,
+  NzCheckboxModule,
 ];
 
 @NgModule({

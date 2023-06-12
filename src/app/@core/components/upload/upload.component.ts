@@ -1,10 +1,13 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
 import {
-  NzUploadChangeParam,
-  NzUploadFile,
-  NzUploadXHRArgs,
-} from 'ng-zorro-antd/upload';
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { NzUploadFile, NzUploadXHRArgs } from 'ng-zorro-antd/upload';
 import { finalize } from 'rxjs';
 
 @Component({
@@ -12,10 +15,20 @@ import { finalize } from 'rxjs';
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.scss'],
 })
-export class UploadComponent {
-  @Output() emitUrl = new EventEmitter<string>();
+export class UploadComponent implements OnChanges {
+  @Input() multiple: boolean = false;
+  @Input() limit: number = 1;
+  @Input() fileUrl: string[] = [];
+  @Output() emitUrl = new EventEmitter<string[]>();
   fileName: string = '';
+  fileList: string[] = [];
   constructor(private fireStorage: AngularFireStorage) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('fileUrl' in changes) {
+      this.fileList = changes['fileUrl'].currentValue;
+    }
+  }
 
   beforeUpload(file: NzUploadFile) {
     this.fileName = file.name;
@@ -33,7 +46,8 @@ export class UploadComponent {
       .pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe((result) => {
-            this.emitUrl.emit(result);
+            this.fileList = [...this.fileList, result];
+            this.emitUrl.emit(this.fileList);
             event.onSuccess?.(result, file, result);
           });
         })
@@ -49,4 +63,8 @@ export class UploadComponent {
         },
       });
   };
+
+  deleteImg(idx: number) {
+    this.fileList.splice(idx, 1);
+  }
 }

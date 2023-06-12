@@ -1,0 +1,37 @@
+<div class="page-header">
+  <h3 nz-typography>Danh sách khách hàng</h3>
+</div>
+
+<nz-table
+  #basicTable
+  [nzData]="collection"
+  [nzNoResult]="empty"
+  [nzLoading]="loading"
+>
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>Số điện thoại/E-mail</th>
+      <th>Ngày đăng ký</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data; let idx = index">
+      <td>{{ idx + 1 }}</td>
+      <td>
+        {{ data.customerInfo }}
+      </td>
+      <td>{{ data.registerDate | date : "dd/MM/yyyy" }}</td>
+    </tr>
+  </tbody>
+</nz-table>
+<ng-template #empty>
+  <nz-empty
+    nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+    [nzNotFoundContent]="contentTpl"
+  >
+    <ng-template #contentTpl>
+      <span> Không tìm thấy dữ liệu phù hợp </span>
+    </ng-template>
+  </nz-empty>
+</ng-template>

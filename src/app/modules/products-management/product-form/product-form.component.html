@@ -1,0 +1,189 @@
+<h3 nz-typography>Thêm sản phẩm mới</h3>
+<form nz-form [formGroup]="formProduct" (ngSubmit)="submitForm()">
+  <nz-form-item nz-col>
+    <nz-form-label [nzSpan]="24" [nzRequired]="true"
+      >Tên sản phẩm</nz-form-label
+    >
+    <nz-form-control
+      [nzSpan]="16"
+      nzHasFeedback
+      nzErrorTip="Vui lòng nhập tên sản phẩm!"
+    >
+      <input
+        autocomplete="off"
+        nz-input
+        nzSize="large"
+        formControlName="productName"
+        placeholder="Nhập dữ liệu"
+      />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item nz-col>
+    <nz-form-label [nzSpan]="24" [nzRequired]="true">Phân loại</nz-form-label>
+    <nz-form-control
+      [nzSpan]="16"
+      nzHasFeedback
+      nzErrorTip="Vui lòng chọn phân loại!"
+    >
+      <nz-select
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="Chọn loại xe"
+        formControlName="category"
+        nzSize="large"
+        [compareWith]="compareById"
+      >
+        <nz-option
+          *ngFor="let item of categoryOptions"
+          [nzLabel]="item.name"
+          [nzValue]="item"
+        ></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item nz-col>
+    <nz-form-label [nzSpan]="24" [nzRequired]="true"
+      >Nhóm sản phẩm</nz-form-label
+    >
+    <nz-form-control
+      [nzSpan]="16"
+      nzHasFeedback
+      nzErrorTip="Vui lòng chọn nhóm sản phẩm!"
+    >
+      <nz-select
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="Chọn loại xe"
+        formControlName="group"
+        nzSize="large"
+        [compareWith]="compareById"
+      >
+        <nz-option
+          *ngFor="let item of filterOptionsByCategory()"
+          [nzLabel]="item.name"
+          [nzValue]="item"
+        ></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <div formArrayName="productClassification">
+    <div>
+      <h4>Chi tiết (màu sắc / giá)</h4>
+    </div>
+    <div
+      class="form-array-wrapper"
+      *ngFor="let item of productClassification.controls; let idx = index"
+      [formGroupName]="idx"
+    >
+      <nz-form-item nz-col *ngIf="item.value.images.length < 5">
+        <nz-form-label [nzSpan]="24" [nzRequired]="true"
+          >Hình ảnh</nz-form-label
+        >
+        <nz-form-control [nzSpan]="24" nzHasFeedback>
+          <app-upload
+            [fileUrl]="item.value.images"
+            [multiple]="true"
+            [limit]="1"
+            (emitUrl)="receivedImageUrl($event, idx)"
+          ></app-upload>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item nz-col>
+        <nz-form-label [nzSpan]="24" [nzRequired]="true">Màu sắc</nz-form-label>
+        <nz-form-control
+          [nzSpan]="16"
+          nzHasFeedback
+          nzErrorTip="Vui lòng chọn màu sắc!"
+        >
+          <input
+            autocomplete="off"
+            nz-input
+            nzSize="large"
+            formControlName="color"
+            placeholder="Nhập dữ liệu"
+          />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item nz-col>
+        <nz-form-label [nzSpan]="24" [nzRequired]="true"
+          >Giá niêm yết</nz-form-label
+        >
+        <nz-form-control
+          [nzSpan]="16"
+          nzHasFeedback
+          nzErrorTip="Vui lòng nhập giá niêm yết!"
+        >
+          <nz-input-number
+            style="width: 100%"
+            autocomplete="off"
+            nzSize="large"
+            formControlName="price"
+            placeholder="Nhập dữ liệu"
+            [nzFormatter]="formatter"
+            [nzParser]="parser"
+          ></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+
+      <div class="classification-action">
+        <button
+          *ngIf="productClassification.controls.length > 1"
+          nz-button
+          nzType="primary"
+          nzDanger
+          (click)="deleteClassification(idx)"
+        >
+          <span nz-icon nzType="delete"></span>
+          Xóa
+        </button>
+
+        <button nz-button nzType="default" (click)="copyClassification(idx)">
+          <span nz-icon nzType="copy"></span>
+          Sao chép
+        </button>
+
+        <button
+          *ngIf="idx === productClassification.controls.length - 1"
+          nz-button
+          nzType="primary"
+          (click)="addClassification()"
+        >
+          <span nz-icon nzType="plus-circle"></span>
+          Thêm
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="isUpdate; else create">
+    <button
+      style="margin-top: 1rem"
+      nz-button
+      nzType="primary"
+      nzSize="large"
+      type="submit"
+      [nzLoading]="loading"
+    >
+      <span nz-icon nzType="file-sync"></span>
+      Cập nhật sản phẩm
+    </button>
+  </ng-container>
+  <ng-template #create>
+    <button
+      style="margin-top: 1rem"
+      nz-button
+      nzType="primary"
+      nzSize="large"
+      type="submit"
+      [nzLoading]="loading"
+    >
+      <span nz-icon nzType="check-circle"></span>
+      Tạo sản phẩm
+    </button>
+  </ng-template>
+</form>

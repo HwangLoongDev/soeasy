@@ -15,11 +15,25 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'news-events',
+        path: 'customers',
+        loadChildren: () =>
+          import('./modules/register-customers/register-customer.module').then(
+            (m) => m.RegisterCustomersModule
+          ),
+      },
+      {
+        path: 'news',
         loadChildren: () =>
           import('./modules/news-events/news-events.module').then(
             (m) => m.NewsEventsModule
           ),
+      },
+      {
+        path: 'products-management',
+        loadChildren: () =>
+          import(
+            './modules/products-management/products-management.module'
+          ).then((m) => m.ProductsManagementModule),
       },
     ],
   },

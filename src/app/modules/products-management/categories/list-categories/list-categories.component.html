@@ -1,0 +1,48 @@
+<nz-table
+  #basicTable
+  [nzData]="collection"
+  [nzNoResult]="empty"
+  [nzLoading]="loading"
+>
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>Danh mục</th>
+      <th>Ngày cập nhật</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data; let idx = index">
+      <td>{{ idx + 1 }}</td>
+      <td>
+        <a [routerLink]="'/products-management/categories/' + data.id">{{
+          data.name
+        }}</a>
+      </td>
+      <td>{{ data.modifiedDate | date : "dd/MM/yyyy" }}</td>
+      <td>
+        <button
+          nz-popconfirm
+          nzPopconfirmTitle="Xóa dữ liệu ?"
+          (nzOnConfirm)="handleDeleteCategory(data.id!)"
+          nz-button
+          nzDanger
+          nzType="text"
+        >
+          <span nz-icon nzType="delete"></span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+<ng-template #empty>
+  <nz-empty
+    nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+    [nzNotFoundContent]="contentTpl"
+  >
+    <ng-template #contentTpl>
+      <span> Không tìm thấy dữ liệu phù hợp </span>
+    </ng-template>
+  </nz-empty>
+</ng-template>

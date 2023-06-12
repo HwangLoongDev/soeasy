@@ -1,13 +1,37 @@
 <nz-upload
+  *ngIf="fileList.length < limit"
   nzAccept="image/*"
   nzType="drag"
   [nzSize]="10000"
   [nzBeforeUpload]="beforeUpload"
   [nzCustomRequest]="handleUpload"
+  [nzMultiple]="multiple"
+  [nzLimit]="limit"
+  [nzShowUploadList]="false"
 >
   <p class="ant-upload-drag-icon">
     <span style="font-size: 44px" nz-icon nzType="inbox"></span>
   </p>
   <p class="ant-upload-text">Click hoặc kéo thả file để upload</p>
-  <p class="ant-upload-hint">Hỗ trợ tải lên 1 file ảnh, tối đa 10MB.</p>
+  <p class="ant-upload-hint">
+    Hỗ trợ tải lên {{ limit }} file ảnh, tối đa 10MB. Click vào ảnh để xóa.
+  </p>
 </nz-upload>
+
+<div class="img-preview-wrapper" *ngIf="fileList.length">
+  <div
+    *ngFor="let img of fileList; let idx = index"
+    class="img-preview-container"
+    (click)="deleteImg(idx)"
+  >
+    <!-- <div class="img-overlay">
+      <button nz-button nzType="text">
+        <span nz-icon nzType="eye"></span>
+      </button>
+      <button nz-button nzType="text">
+        <span nz-icon nzType="delete"></span>
+      </button>
+    </div> -->
+    <img [src]="img" [alt]="idx" />
+  </div>
+</div>

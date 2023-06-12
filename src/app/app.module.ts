@@ -15,12 +15,14 @@ import { environment } from '../environments/environment';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { getAuth, provideAuth } from '@angular/fire/auth';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 // Locale
 import { registerLocaleData } from '@angular/common';
 import vi from '@angular/common/locales/vi';
 import { NZ_I18N, vi_VN } from 'ng-zorro-antd/i18n';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 registerLocaleData(vi);
 
@@ -35,11 +37,13 @@ registerLocaleData(vi);
     CoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideStorage(() => getStorage()),
+    provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
   ],
   providers: [
     { provide: NZ_I18N, useValue: vi_VN },
     { provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig },
+    NzMessageService,
   ],
   bootstrap: [AppComponent],
 })

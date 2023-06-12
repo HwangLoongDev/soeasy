@@ -1,0 +1,50 @@
+<div style="display: flex; justify-content: space-between; align-items: center">
+  <h3 nz-typography>Danh sách bán chạy</h3>
+</div>
+<nz-transfer
+  [nzDataSource]="dataSource"
+  [nzShowSearch]="true"
+  [nzRenderList]="[renderList, renderList]"
+  [nzShowSelectAll]="false"
+  (nzChange)="change($event)"
+  [nzDisabled]="loading"
+>
+  <ng-template
+    #renderList
+    let-items
+    let-direction="direction"
+    let-stat="stat"
+    let-disabled="disabled"
+    let-onItemSelectAll="onItemSelectAll"
+    let-onItemSelect="onItemSelect"
+  >
+    <nz-table
+      #t
+      [nzData]="$asTransferItems(items)"
+      nzSize="small"
+      [nzLoading]="loading"
+    >
+      <thead>
+        <tr>
+          <th
+            [nzDisabled]="disabled"
+            [nzChecked]="stat.checkAll"
+            [nzIndeterminate]="stat.checkHalf"
+            (nzCheckedChange)="onItemSelectAll($event)"
+          ></th>
+          <th>Tên</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of t.data" (click)="onItemSelect(data)">
+          <td
+            [nzChecked]="!!data.checked"
+            [nzDisabled]="disabled || data.disabled"
+            (nzCheckedChange)="onItemSelect(data)"
+          ></td>
+          <td>{{ data.title }}</td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </ng-template>
+</nz-transfer>

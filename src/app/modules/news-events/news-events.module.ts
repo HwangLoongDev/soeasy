@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/@shared/shared.module';
 import { CoreModule } from 'src/app/@core/core.module';
 import { QuillModule } from 'ngx-quill';
+import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
   declarations: [ListsComponent, FormsComponent],
   imports: [
     CoreModule,
+    CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
     QuillModule.forRoot(),

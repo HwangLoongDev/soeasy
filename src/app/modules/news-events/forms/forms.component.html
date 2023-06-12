@@ -13,12 +13,17 @@
     </nz-form-control>
   </nz-form-item>
 
+  <label nz-checkbox formControlName="banner">Banner</label>
+
   <nz-form-item nz-col>
     <nz-form-label [nzSpan]="24" [nzRequired]="true"
       >Ảnh thumbnail</nz-form-label
     >
     <nz-form-control [nzSpan]="16" nzHasFeedback>
-      <app-upload (emitUrl)="receivedImageUrl($event)"></app-upload>
+      <app-upload
+        [fileUrl]="formNewsEvents.get('thumbnail')?.value"
+        (emitUrl)="receivedImageUrl($event)"
+      ></app-upload>
     </nz-form-control>
   </nz-form-item>
 
@@ -31,6 +36,7 @@
         nzSize="large"
         [nzFormat]="'dd/MM/YYYY'"
         formControlName="effectiveDate"
+        (nzOnCalendarChange)="changeDatePicker($event)"
       ></nz-range-picker>
     </nz-form-control>
   </nz-form-item>
@@ -54,7 +60,7 @@
     >
       <quill-editor
         formControlName="editorContent"
-        placeholder="Nội dung chi tiết"
+        placeholder="Nội dung chi tiết" [modules]="quillModules"
       ></quill-editor>
     </nz-form-control>
   </nz-form-item>

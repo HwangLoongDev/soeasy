@@ -12,6 +12,13 @@ import {
   InboxOutline,
   LogoutOutline,
   DownloadOutline,
+  PlusCircleOutline,
+  EyeOutline,
+  DeleteOutline,
+  CheckCircleOutline,
+  FileSyncOutline,
+  CloseCircleOutline,
+  CopyOutline,
 } from '@ant-design/icons-angular/icons';
 import { NgModule } from '@angular/core';
 
@@ -25,6 +32,12 @@ const icons: IconDefinition[] = [
   InboxOutline,
   LogoutOutline,
   DownloadOutline,
+  PlusCircleOutline,
+  CheckCircleOutline,
+  FileSyncOutline,
+  CloseCircleOutline,
+  DeleteOutline,
+  CopyOutline,
 ];
 
 // Import all. NOT RECOMMENDED. ❌

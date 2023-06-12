@@ -1,0 +1,22 @@
+.form-array-wrapper {
+  padding: 1rem 0 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  border-bottom: 1px solid #edf2f9;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.img-preview-wrapper {
+  display: flex;
+  gap: 12px;
+}
+
+.classification-action {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}

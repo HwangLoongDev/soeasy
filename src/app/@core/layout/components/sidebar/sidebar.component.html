@@ -9,15 +9,27 @@
 >
   <div class="logo"></div>
   <ul nz-menu nzMode="inline">
-    <li nz-submenu nzTitle="Quản lý sản phẩm" nzIcon="user">
+    <li nz-menu-item nzMatchRouter routerLink="/customers">
+      <span nz-icon nzType="file"></span>
+      <span>Khách hàng</span>
+    </li>
+    <li nz-submenu nzMatchRouter nzTitle="Quản lý sản phẩm" nzIcon="user">
       <ul>
-        <li nz-menu-item>Danh mục</li>
-        <li nz-menu-item>Nhóm sản phẩm</li>
-        <li nz-menu-item>Danh sách sản phẩm</li>
-        <li nz-menu-item>Sản phẩm bán chạy</li>
+        <li nz-menu-item nzMatchRouter routerLink="/products-management/categories">
+          Danh mục
+        </li>
+        <li nz-menu-item nzMatchRouter routerLink="/products-management/product-groups">
+          Nhóm sản phẩm
+        </li>
+        <li nz-menu-item nzMatchRouter routerLink="/products-management/product-list">
+          Danh sách sản phẩm
+        </li>
+        <li nz-menu-item nzMatchRouter routerLink="/products-management/best-seller-list">
+          Sản phẩm bán chạy
+        </li>
       </ul>
     </li>
-    <li nz-menu-item routerLink="/news-events">
+    <li nz-menu-item nzMatchRouter routerLink="/news">
       <span nz-icon nzType="file"></span>
       <span>Tin tức - Sự kiện</span>
     </li>
